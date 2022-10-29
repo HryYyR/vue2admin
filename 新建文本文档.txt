@@ -1,0 +1,12 @@
+// to 将要访问的路径
+// from 从哪个路径跳转而来
+// next  放行函数，是否放行   next()     强制跳转 next('/login')
+
+Router.beforeEach((to, from, next) => {
+  if (to.path === '/login') return next();
+
+  //  获取token
+  const tokenStr = window.sessionStorage.getItem('token');
+  if (!tokenStr) return next('/login')
+  next()
+})
